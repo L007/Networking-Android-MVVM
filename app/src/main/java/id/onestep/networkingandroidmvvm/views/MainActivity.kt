@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.main=viewModel
 
-        viewModel.getMovie()
+        binding.btnSearch.setOnClickListener { viewModel.getMovie(binding.etCategory.getText().toString()) }
+
     }
 }

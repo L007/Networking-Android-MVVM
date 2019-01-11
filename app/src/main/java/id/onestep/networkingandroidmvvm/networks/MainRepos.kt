@@ -10,8 +10,8 @@ class MainRepos {
     private val apiService = ServiceFactory.create()
     private val compositeDisposable = CompositeDisposable()
 
-    fun reqMovie(onResult:(ResultsItem)->Unit,onError:(Throwable)->Unit){
-        apiService.getMovie("popular")
+    fun reqMovie(catgeory:String,onResult:(ResultsItem)->Unit,onError:(Throwable)->Unit){
+        apiService.getMovie(catgeory)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object :ApiObserver<ResultsItem>(compositeDisposable){

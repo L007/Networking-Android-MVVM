@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
-    xmlns:android="http://schemas.android.com/apk/res/android">
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -19,6 +19,7 @@
             android:id="@+id/imgMovie"
             android:layout_width="150dp"
             android:layout_height="200dp"
+            app:loadImage="@{movie.imgMovie}"
 
             />
 
@@ -28,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/imgMovie"
             android:layout_marginLeft="10dp"
-            android:text="Nama film"
+            android:text="@{movie.title}"
             android:textSize="8pt"
             android:textStyle="bold"
             android:textColor="#000000"
@@ -40,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/imgMovie"
             android:layout_marginLeft="10dp"
-            android:text="10.0"
+            android:text="@{movie.popularity}"
             android:layout_below="@+id/txtNamaFilm"
             android:layout_marginTop="10dp"
             />
@@ -51,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/imgMovie"
             android:layout_marginLeft="10dp"
-            android:text="ini film bagus"
+            android:text="@{movie.overview}"
             android:layout_below="@+id/txtPopularity"
             android:layout_marginTop="10dp"
             />

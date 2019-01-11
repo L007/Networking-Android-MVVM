@@ -12,8 +12,9 @@ class MainViewModel(application:Application):AndroidViewModel(application) {
     var listMovie:MutableLiveData<ResultsItem> = MutableLiveData()
     var error:MutableLiveData<Throwable> = MutableLiveData()
 
-    fun getMovie(){
+    fun getMovie(category:String){
         repo.reqMovie(
+                category,
                 {listMovie.postValue(it)},
                 {error.postValue(it)})
     }
