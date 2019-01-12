@@ -7,12 +7,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import id.onestep.networkingandroidmvvm.R
 import id.onestep.networkingandroidmvvm.databinding.ListMovieBinding
+import id.onestep.networkingandroidmvvm.models.Movie
 import id.onestep.networkingandroidmvvm.models.ResultsItem
+
+
 import id.onestep.networkingandroidmvvm.viewmodels.ListMovieViewModel
 
 class ListMovieAdapter(val context:Context): RecyclerView.Adapter<ListMovieAdapter.ListMovieViewHolder>() {
 
-    private val listMovie:MutableList<ResultsItem> = mutableListOf()
+    private var listMovie:MutableList<ResultsItem?>? = mutableListOf()
 
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ListMovieViewHolder {
@@ -21,16 +24,20 @@ class ListMovieAdapter(val context:Context): RecyclerView.Adapter<ListMovieAdapt
     }
 
     override fun getItemCount(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return listMovie?.size!!
     }
 
     override fun onBindViewHolder(p0: ListMovieViewHolder, p1: Int) {
+        p0.bindData(listMovie?.get(p0.adapterPosition))
+    }
 
+    fun setData(list: MutableList<ResultsItem?>?){
+        this.listMovie = list
     }
 
 
     class ListMovieViewHolder(private val binding:ListMovieBinding):RecyclerView.ViewHolder(binding.root) {
-    fun bindData(model:ResultsItem){
+    fun bindData(model: ResultsItem?){
         val viewModel = ListMovieViewModel(model)
         binding.movie = viewModel
         ///////////// binding.kemena?

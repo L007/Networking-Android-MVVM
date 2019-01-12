@@ -1,5 +1,6 @@
 package id.onestep.networkingandroidmvvm.views
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
@@ -8,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager
 import id.onestep.networkingandroidmvvm.R
 import id.onestep.networkingandroidmvvm.adapters.ListMovieAdapter
 import id.onestep.networkingandroidmvvm.databinding.ActivityMainBinding
+
 import id.onestep.networkingandroidmvvm.viewmodels.MainViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -25,6 +27,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnSearch.setOnClickListener { viewModel.getMovie(binding.etCategory.getText().toString()) }
 
+        setupRecyvleView()
+        observeLiveData()
+
+
+
     }
 
     private fun setupRecyvleView(){
@@ -36,5 +43,13 @@ class MainActivity : AppCompatActivity() {
         binding.rvMovie.adapter=adapter
 
 
+    }
+
+    private fun observeLiveData(){
+        viewModel.listMovie.observe(this, Observer {
+                adapter.setData(it?.results!!)
+                adapter.notifyDataSetChanged()
+        })
+        viewModel.error.observe(this, Observer {  })
     }
 }
