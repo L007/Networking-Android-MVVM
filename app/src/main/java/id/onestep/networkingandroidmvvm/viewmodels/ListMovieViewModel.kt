@@ -11,11 +11,13 @@ class ListMovieViewModel(model: ResultsItem?):ViewModel() {
     var popularity:ObservableField<String> = ObservableField()
     var imgMovie : ObservableField<String> = ObservableField()
     var overview : ObservableField<String> = ObservableField()
+    var tahunRilis : ObservableField<String> = ObservableField()
 
     init {
         title.set(model?.title)
-        popularity.set(model?.popularity.toString())
+        popularity.set("Rating : ${model?.voteAverage.toString()}")
         imgMovie.set("https://image.tmdb.org/t/p/w370_and_h556_bestv2${model?.posterPath}")
         overview.set(model?.overview)
+        tahunRilis.set(model?.releaseDate)
     }
 }
