@@ -1,92 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-        xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
-                name="movie"
-                type="id.onestep.networkingandroidmvvm.viewmodels.ListMovieViewModel">
+            name="movie"
+            type="id.onestep.networkingandroidmvvm.viewmodels.ListMovieViewModel">
 
         </variable>
     </data>
 
     <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="260dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            app:cardCornerRadius="5dp"
-            app:cardElevation="5dp"
-            app:cardPreventCornerOverlap="false"
-    >
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        app:cardPreventCornerOverlap="false">
 
-    <RelativeLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
 
-    <ImageView
-            android:id="@+id/imgMovie"
-            android:layout_width="150dp"
-            android:layout_height="match_parent"
-            app:loadImage="@{movie.imgMovie}"
-            android:scaleType="centerCrop"
+            <ImageView
+                android:id="@+id/imgMovie"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:loadImage="@{movie.imgMovie}"
 
-            />
+                />
 
-    <TextView
-            android:id="@+id/txtNamaFilm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/imgMovie"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:text="@{movie.title}"
-            android:textSize="8pt"
-            android:textStyle="bold"
-            android:textColor="#000000"
-            />
-        <TextView
+            <TextView
+                android:id="@+id/txtNamaFilm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/imgMovie"
+                android:text="@{movie.title}"
+                android:textColor="#000000"
+                android:textSize="8pt"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/txtTahunRilis"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/imgMovie"
-                android:layout_marginLeft="10dp"
-                android:text="@{movie.tahunRilis}"
                 android:layout_below="@+id/txtNamaFilm"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/imgMovie"
+                android:text="@{movie.tahunRilis}"
 
-        />
+                />
 
-    <TextView
-            android:id="@+id/txtPopularity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/imgMovie"
-            android:layout_marginLeft="10dp"
-            android:text="@{movie.popularity}"
-            android:layout_below="@+id/txtTahunRilis"
-            android:layout_marginTop="10dp"
+            <TextView
+                android:id="@+id/txtPopularity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtTahunRilis"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/imgMovie"
+                android:text="@{movie.popularity}"
 
-            />
+                />
 
-    <TextView
-            android:id="@+id/txtOverview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/imgMovie"
-            android:layout_marginLeft="10dp"
-            android:text="@{movie.overview}"
-            android:layout_below="@+id/txtPopularity"
-            android:layout_marginTop="10dp"
-            android:ellipsize="end"
-            android:maxLines="7"
-            />
+            <RatingBar
+                android:id="@+id/rbPopularity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_alignTop="@+id/txtPopularity"
+                android:layout_toRightOf="@+id/txtPopularity"
+                android:layout_marginLeft="10dp"
+                android:numStars="5"
+                android:stepSize="0.1"
+                android:rating="@{movie.rbPopularity}"
+                android:progressTint="#ffc004"
+                android:secondaryProgressTint="#ffc004"
+
+
+                />
 
 
 
+            <TextView
+                android:id="@+id/txtOverview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtPopularity"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/imgMovie"
+                android:ellipsize="end"
+                android:maxLines="7"
+                android:text="@{movie.overview}" />
 
-    </RelativeLayout>
+
+        </RelativeLayout>
     </android.support.v7.widget.CardView>
 </layout>
