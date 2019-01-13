@@ -6,13 +6,16 @@ import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import id.onestep.networkingandroidmvvm.R
 import id.onestep.networkingandroidmvvm.adapters.ListMovieAdapter
 import id.onestep.networkingandroidmvvm.databinding.ActivityMainBinding
 
 import id.onestep.networkingandroidmvvm.viewmodels.MainViewModel
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),AdapterView.OnItemSelectedListener {
     private lateinit var binding:ActivityMainBinding
     private lateinit var viewModel : MainViewModel
     private lateinit var adapter : ListMovieAdapter
@@ -25,7 +28,21 @@ class MainActivity : AppCompatActivity() {
 
         binding.main=viewModel
 
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.category_name,
+            R.layout.spinner_item
+
+        ).also { adapter ->
+
+            adapter.setDropDownViewResource(R.layout.spinner_item)
+
+            binding.spCategory.adapter = adapter }
+        
+
+        binding.spCategory.onItemSelectedListener = this
         binding.btnSearch.setOnClickListener { viewModel.getMovie(binding.etCategory.getText().toString()) }
+
 
         setupRecyvleView()
         observeLiveData()
@@ -52,4 +69,13 @@ class MainActivity : AppCompatActivity() {
         })
         viewModel.error.observe(this, Observer {  })
     }
+
+    override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
+       viewModel.getMovie(parent.getItemAtPosition(pos).toString())
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>) {
+        // Another interface callback
+    }
 }
+

@@ -19,10 +19,11 @@
 
         <EditText
                 android:id="@+id/etCategory"
+            android:layout_below="@+id/spCategory"
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginEnd="10dp"
                 android:fontFamily="sans-serif-light"
                 android:hint="popular/top_rated/upcoming"
@@ -30,6 +31,17 @@
                 android:inputType="text"
                 android:textColor="@color/colorPrimary"
                 android:textColorHint="@color/colorPrimary" />
+        <Spinner
+            android:id="@+id/spCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignLeft="@+id/etCategory"
+            android:layout_marginTop="10dp"
+
+            >
+
+        </Spinner>
 
         <Button
                 android:id="@+id/btnSearch"
